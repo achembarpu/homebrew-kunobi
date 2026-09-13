@@ -29,6 +29,16 @@ class KacheUnstable < Formula
     bin.install "kache"
   end
 
+  def caveats
+    <<~EOS
+      To configure Kache without installing its native daemon service:
+        #{opt_bin}/kache init --no-service
+
+      To start the Homebrew-managed daemon:
+        brew services start #{name}
+    EOS
+  end
+
   service do
     run [opt_bin/"kache", "daemon", "run"]
     keep_alive true
