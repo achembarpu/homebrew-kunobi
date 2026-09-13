@@ -29,6 +29,12 @@ class KacheUnstable < Formula
     bin.install "kache"
   end
 
+  service do
+    run [opt_bin/"kache", "daemon", "run"]
+    keep_alive true
+    restart_delay 5
+  end
+
   test do
     system bin/"kache", "--version"
   end
